@@ -19,8 +19,13 @@ namespace Hallucinogen_API
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseIIS()
-                //.UseKestrel(options => { options.AddServerHeader = false; })
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
                 .UseStartup<Startup>();
+
+        //.Build();
+        //.UseKestrel(options => { options.AddServerHeader = false; })
+        //.UseStartup<Startup>();
     }
 }
