@@ -31,7 +31,7 @@ namespace Hallucinogen_API
                     .AddHelpersLayer()
                     .AddRepositoriesLayer()
                     .AddServicesLayer()
-                    //.AddCustomIdentity()
+                    .AddCustomIdentity()
                     .AddCustomSwagger()
                     //.AddJwtConfiguration()
                     //.AddSendGridEmailSender()
