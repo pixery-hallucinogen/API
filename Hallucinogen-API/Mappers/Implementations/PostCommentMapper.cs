@@ -7,7 +7,7 @@ namespace Hallucinogen_API.Mappers.Implementations
     {
         public PostCommentModel ToModel(PostCommentEntity entity)
         {
-            return new PostCommentModel
+            var model =  new PostCommentModel
             {
                 Id = entity.Id,
                 PostId = entity.PostId,
@@ -15,6 +15,13 @@ namespace Hallucinogen_API.Mappers.Implementations
                 CommentDate = entity.CommentDate,
                 UserId = entity.UserId
             };
+
+            if (entity.User == null) return model;
+            
+            model.UserName = entity.User.UserName;
+            model.UserPhoto = entity.User.Image;
+
+            return model;
         }
 
         public PostCommentEntity ToEntity(PostCommentModel model)

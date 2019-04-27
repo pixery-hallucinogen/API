@@ -53,6 +53,7 @@ namespace Hallucinogen_API.Repositories.Implementations
                 .OrderByDescending(pe => pe.PostDate)
                 .Take(20)
                 .Include(p => p.Likes)
+                .Include(p => p.User)
                 .ToListAsync();
         }
 
@@ -62,6 +63,7 @@ namespace Hallucinogen_API.Repositories.Implementations
                 .Where(pe => pe.UserId == userId)
                 .OrderByDescending(pe => pe.PostDate)
                 .Include(p => p.Likes)
+                .Include(p => p.User)
                 .ToListAsync();
         }
 
@@ -69,6 +71,7 @@ namespace Hallucinogen_API.Repositories.Implementations
         {
             return await _dbContext.Posts
                 .Include(p => p.Likes)
+                .Include(p => p.User)
                 .FirstOrDefaultAsync(p => p.Id == postId);
         }
 
@@ -91,6 +94,7 @@ namespace Hallucinogen_API.Repositories.Implementations
             return await _dbContext.PostComments
                 .Where(pc => pc.PostId == postId)
                 .OrderByDescending(pc => pc.CommentDate)
+                .Include(pc => pc.User)
                 .ToListAsync();
         }
     }

@@ -25,6 +25,12 @@ namespace Hallucinogen_API.Mappers.Implementations
                 model.LikeCount = entity.Likes.Count;
             }
 
+            if (entity.User != null)
+            {
+                model.UserName = entity.User.UserName;
+                model.UserPhoto = entity.User.Image;
+            }
+            
             model.AlreadyLiked = entity.Likes != null && entity.Likes.Any(l => l.UserId == requesterId);
 
             return model;

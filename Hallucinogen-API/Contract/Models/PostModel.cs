@@ -15,5 +15,7 @@ namespace Hallucinogen_API.Contract.Models
         
         public int LikeCount { get; set; }
         public bool? AlreadyLiked { get; set; }
+        public string UserPhoto { get; set; }
+        public string UserName { get; set; }
     }
 }
