@@ -77,7 +77,9 @@ namespace Hallucinogen_API.Extensions
 
         public static IServiceCollection AddServicesLayer(this IServiceCollection services)
         {
-            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAccountService, AccountService>()
+                .AddScoped<IPostService, PostService>();
+            
             return services;
         }
 
