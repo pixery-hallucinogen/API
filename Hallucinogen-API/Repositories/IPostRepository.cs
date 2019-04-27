@@ -9,6 +9,7 @@ namespace Hallucinogen_API.Repositories
         Task<bool> CreatePostAsync(PostEntity entity);
         Task<List<PostEntity>> GetPostsHomeScreenAsync();
         Task<List<PostEntity>> GetPostOfUserFromUserIdAsync(string userId);
+        Task<List<PostEntity>> GetPostsFromLocationAsync(double latitude, double longitude);
         Task<PostEntity> GetPostFromIdAsync(int postId);
         Task<bool> LikePostAsync(PostLikeEntity entity);
         Task<bool> CommentPostAsync(PostCommentEntity entity);

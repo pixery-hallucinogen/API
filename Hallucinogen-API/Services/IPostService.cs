@@ -9,6 +9,8 @@ namespace Hallucinogen_API.Services
     {
         Task<GetPostResponse> GetPostFromIdAsync(int postId, string requesterId);
         Task<GetPostsResponse> GetPostOfUserFromUserIdAsync(string userId, string requesterId);
+        Task<GetPostsResponse> GetPostsFromLocationAsync(double latitude, double longitude, string requesterId);
+
         Task<GetPostsResponse> GetPostsAsync(string requesterId);
         Task<CreatePostResponse> CreatePostAsync(CreatePostRequest request, string userId);
         Task<LikePostResponse> LikePostAsync(LikePostRequest request, string userId);

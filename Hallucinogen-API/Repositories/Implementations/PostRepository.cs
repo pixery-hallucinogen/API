@@ -67,6 +67,16 @@ namespace Hallucinogen_API.Repositories.Implementations
                 .ToListAsync();
         }
 
+        public async Task<List<PostEntity>> GetPostsFromLocationAsync(double latitude, double longitude)
+        {
+            // TODO: improve this logic, this is fine for Turkey but not applicable for big longitudes
+            return await _dbContext.Posts
+                .Where(pe => Math.Abs(pe.Latitude - latitude) < 0.045 && Math.Abs(pe.Longitude - longitude) < 0.045)
+                .Include(p => p.Likes)
+                .Include(p => p.User)
+                .ToListAsync();        
+        }
+
         public async Task<PostEntity> GetPostFromIdAsync(int postId)
         {
             return await _dbContext.Posts

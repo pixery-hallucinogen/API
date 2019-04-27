@@ -76,6 +76,18 @@ namespace Hallucinogen_API.Controllers
 
             return GenerateResponse(response);
         }
+
+        [AllowAnonymous]
+        [HttpGet("coordinates/{latitude}/{longitude}")]
+        public async Task<IActionResult> GetPostsWithCoordinates(double latitude, double longitude)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+            var response = await _postService.GetPostsFromLocationAsync(latitude, longitude, userId);
+
+            return GenerateResponse(response);
+        }
+        
         
         [HttpGet("{postId}")]
         [AllowAnonymous]

@@ -68,6 +68,19 @@ namespace Hallucinogen_API.Services.Implementations
             
         }
 
+        public async Task<GetPostsResponse> GetPostsFromLocationAsync(double latitude, double longitude, string requesterId)
+        {
+            var postEntities = await _postRepository.GetPostsFromLocationAsync(latitude, longitude);
+            
+            var response = new GetPostsResponse
+            {
+                StatusCode = (int) HttpStatusCode.OK,
+                Posts = postEntities.Select(p => _postMapper.ToModel(p, requesterId)).ToList()
+            };
+
+            return response;        
+        }
+
         public async Task<GetPostsResponse> GetPostsAsync(string requesterId = null)
         {
             var postEntities = await _postRepository.GetPostsHomeScreenAsync();

@@ -25,6 +25,14 @@ namespace Hallucinogen_API.Data
             builder.Entity<PostEntity>()
                 .HasIndex(pe => pe.PostDate)
                 .HasFilter(null);
+
+            // Post Index over lat & long
+            builder.Entity<PostEntity>()
+                .HasIndex(pe => pe.Latitude);
+
+            builder.Entity<PostEntity>()
+                .HasIndex(pe => pe.Longitude);
+
             
             // PostLike Many-Many
             builder.Entity<PostLikeEntity>()
