@@ -3,10 +3,11 @@
   "deployments": {
     "aspNetCoreWeb": [
       {
-        "name": "Hallucinogen API",
+        "name": "Hallucinogen-API",
         "parameters": {
-          "archive": "site.zip",
-          "iisPath": "/"
+          "appBundle": "site.zip",
+          "iisPath": "/",
+          "iisWebSite": "Default Web Site"
         }
       }
     ]
