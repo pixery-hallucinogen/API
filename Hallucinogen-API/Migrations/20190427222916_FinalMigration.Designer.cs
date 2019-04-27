@@ -3,15 +3,17 @@ using System;
 using Hallucinogen_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Hallucinogen_API.Migrations
 {
     [DbContext(typeof(HallucinogenDbContext))]
-    partial class HallucinogenDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190427222916_FinalMigration")]
+    partial class FinalMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
