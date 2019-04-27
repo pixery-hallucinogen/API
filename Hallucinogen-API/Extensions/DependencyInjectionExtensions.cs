@@ -2,6 +2,8 @@ using System;
 using System.Text;
 using Hallucinogen_API.Data;
 using Hallucinogen_API.Data.Entities;
+using Hallucinogen_API.Services;
+using Hallucinogen_API.Services.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -60,6 +62,7 @@ namespace Hallucinogen_API.Extensions
 
         public static IServiceCollection AddServicesLayer(this IServiceCollection services)
         {
+            services.AddScoped<IAccountService, AccountService>();
             return services;
         }
 
