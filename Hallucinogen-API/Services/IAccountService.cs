@@ -8,8 +8,8 @@ namespace Hallucinogen_API.Services
     public interface IAccountService : IDisposable
     {
         Task<LoginResponse> PasswordLoginAsync(LoginRequest request);
-
         Task<SignUpResponse> SignUpAsync(SignUpRequest request);
-
+        Task<CheckUserNameResponse> CheckUserNameAsync(CheckUserNameRequest request);
+        Task<GetUserResponse> GetUserFromIdAsync(string userId);
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Hallucinogen_API.Contract.Request;
 using Hallucinogen_API.Contract.Response;
 using Hallucinogen_API.Data.Entities;
+using Hallucinogen_API.Mappers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -19,14 +20,15 @@ namespace Hallucinogen_API.Services.Implementations
         private readonly IConfiguration _configuration;
         private readonly ILogger<AccountService> _logger;
         private readonly SignInManager<UserEntity> _signInManager;
-
+        private readonly IUserMapper _userMapper;
         private readonly UserManager<UserEntity> _userManager;
 
         public AccountService(SignInManager<UserEntity> signInManager, UserManager<UserEntity> userManager,
-            ILogger<AccountService> logger, IConfiguration configuration)
+            IUserMapper userMapper, ILogger<AccountService> logger, IConfiguration configuration)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _userMapper = userMapper;
             _logger = logger;
             _configuration = configuration;
         }
@@ -34,6 +36,39 @@ namespace Hallucinogen_API.Services.Implementations
         public void Dispose()
         {
             _userManager?.Dispose();
+        }
+
+        public async Task<GetUserResponse> GetUserFromIdAsync(string userId)
+        {
+            var response = new GetUserResponse();
+
+            var userEntity = await _userManager.FindByIdAsync(userId);
+
+            if (userEntity == null)
+            {
+                _logger.LogWarning($"User with id {userId} not found");
+                response.StatusCode = (int) HttpStatusCode.NotFound;
+                return response;
+            }
+
+            var userModel = _userMapper.ToModel(userEntity);
+
+            response.StatusCode = (int) HttpStatusCode.OK;
+            response.User = userModel;
+
+            return response;
+        }
+
+        public async Task<CheckUserNameResponse> CheckUserNameAsync(CheckUserNameRequest request)
+        {
+            var response = new CheckUserNameResponse();
+
+            var userEntity = await _userManager.FindByNameAsync(request.UserName);
+
+            response.IsUserNameAvailable = userEntity == null;
+            response.StatusCode = (int) HttpStatusCode.OK;
+
+            return response;
         }
 
 
