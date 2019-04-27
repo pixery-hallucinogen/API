@@ -13,6 +13,7 @@ namespace Hallucinogen_API.Data
         
         public virtual DbSet<PostEntity> Posts { get; set; }
         public virtual DbSet<PostLikeEntity> PostLikes { get; set; }
+        public virtual DbSet<PostCommentEntity> PostComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -36,6 +37,11 @@ namespace Hallucinogen_API.Data
                 .HasOne(pl => pl.Post)
                 .WithMany(p => p.Likes)
                 .HasForeignKey(pl => pl.PostId);
+            
+            // PostComment Index over PostId
+            builder.Entity<PostCommentEntity>()
+                .HasIndex(pce => pce.PostId)
+                .HasFilter(null);
             
             base.OnModelCreating(builder);
         }
