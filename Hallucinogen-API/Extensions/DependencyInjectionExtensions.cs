@@ -24,7 +24,7 @@ namespace Hallucinogen_API.Extensions
     {
         public static IServiceCollection AddCustomIdentity(this IServiceCollection services)
         {
-            services.AddDefaultIdentity<UserEntity>(options => { options.SignIn.RequireConfirmedEmail = true; })
+            services.AddDefaultIdentity<UserEntity>(options => { options.SignIn.RequireConfirmedEmail = false; })
                 .AddEntityFrameworkStores<HallucinogenDbContext>()
                 .AddDefaultTokenProviders();
 

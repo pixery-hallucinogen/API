@@ -33,7 +33,7 @@ namespace Hallucinogen_API
                     .AddServicesLayer()
                     .AddCustomIdentity()
                     .AddCustomSwagger()
-                    //.AddJwtConfiguration()
+                    .AddJwtConfiguration()
                     //.AddSendGridEmailSender()
                     .AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
