@@ -11,6 +11,7 @@ namespace Hallucinogen_API.Contract.Models
         public string Description { get; set; }
         public DateTime PostDate { get; set; }
         public string UserId { get; set; }
+        public string Location { get; set; }
         
         public int LikeCount { get; set; }
         public bool? AlreadyLiked { get; set; }

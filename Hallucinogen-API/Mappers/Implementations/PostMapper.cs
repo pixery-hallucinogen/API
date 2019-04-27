@@ -16,7 +16,8 @@ namespace Hallucinogen_API.Mappers.Implementations
                 PostDate = entity.PostDate,
                 Latitude = entity.Latitude,
                 Longitude = entity.Longitude,
-                Description = entity.Description
+                Description = entity.Description,
+                Location = entity.Location
             };
             
             if (entity.Likes != null && entity.Likes.Any())
@@ -39,7 +40,8 @@ namespace Hallucinogen_API.Mappers.Implementations
                 PostDate = model.PostDate,
                 Latitude = model.Latitude,
                 Longitude = model.Longitude,
-                Description = model.Description
+                Description = model.Description,
+                Location = model.Location
             };
         }
     }
