@@ -27,7 +27,7 @@ namespace Hallucinogen_API
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                    //.AddMappersLayer()
+                    .AddMappersLayer()
                     .AddHelpersLayer()
                     .AddRepositoriesLayer()
                     .AddServicesLayer()

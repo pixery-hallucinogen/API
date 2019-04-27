@@ -2,6 +2,8 @@ using System;
 using System.Text;
 using Hallucinogen_API.Data;
 using Hallucinogen_API.Data.Entities;
+using Hallucinogen_API.Mappers;
+using Hallucinogen_API.Mappers.Implementations;
 using Hallucinogen_API.Services;
 using Hallucinogen_API.Services.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -52,6 +54,12 @@ namespace Hallucinogen_API.Extensions
                 options.UseNpgsql(configuration["DbConnectionString"]);
             });
 
+            return services;
+        }
+        
+        public static IServiceCollection AddMappersLayer(this IServiceCollection services)
+        {
+            services.AddScoped<IUserMapper, UserMapper>();
             return services;
         }
 
