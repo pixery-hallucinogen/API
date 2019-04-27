@@ -4,6 +4,8 @@ using Hallucinogen_API.Data;
 using Hallucinogen_API.Data.Entities;
 using Hallucinogen_API.Mappers;
 using Hallucinogen_API.Mappers.Implementations;
+using Hallucinogen_API.Repositories;
+using Hallucinogen_API.Repositories.Implementations;
 using Hallucinogen_API.Services;
 using Hallucinogen_API.Services.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -54,6 +56,8 @@ namespace Hallucinogen_API.Extensions
                 options.UseNpgsql(configuration["DbConnectionString"]);
             });
 
+            services.AddScoped<IPostRepository, PostRepository>();
+            
             return services;
         }
         
