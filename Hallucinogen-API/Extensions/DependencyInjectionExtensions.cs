@@ -59,7 +59,9 @@ namespace Hallucinogen_API.Extensions
         
         public static IServiceCollection AddMappersLayer(this IServiceCollection services)
         {
-            services.AddScoped<IUserMapper, UserMapper>();
+            services.AddScoped<IUserMapper, UserMapper>()
+                .AddScoped<IPostMapper, PostMapper>();
+            
             return services;
         }
 
