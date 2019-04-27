@@ -1,13 +1,14 @@
 using Hallucinogen_API.Contract.Models;
 using Hallucinogen_API.Data.Entities;
+using System.Linq;
 
 namespace Hallucinogen_API.Mappers.Implementations
 {
     public class PostMapper : IPostMapper
     {
-        public PostModel ToModel(PostEntity entity)
+        public PostModel ToModel(PostEntity entity, string requesterId)
         {
-            return new PostModel
+            var model = new PostModel
             {
                 Id = entity.Id,
                 Media = entity.Media,
@@ -17,6 +18,15 @@ namespace Hallucinogen_API.Mappers.Implementations
                 Longitude = entity.Longitude,
                 Description = entity.Description
             };
+            
+            if (entity.Likes != null && entity.Likes.Any())
+            {
+                model.LikeCount = entity.Likes.Count;
+            }
+
+            model.AlreadyLiked = entity.Likes != null && entity.Likes.Any(l => l.UserId == requesterId);
+
+            return model;
         }
 
         public PostEntity ToEntity(PostModel model)
