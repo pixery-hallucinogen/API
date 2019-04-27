@@ -14,15 +14,16 @@ namespace Hallucinogen_API.Services.Implementations
     public class PostService : IPostService
     {
         private readonly IPostMapper _postMapper;
-
+        private readonly IPostCommentMapper _postCommentMapper;
         private readonly IPostRepository _postRepository;
         private readonly ILogger<PostService> _logger;
 
         public PostService(IPostRepository postRepository,
-            IPostMapper postMapper, ILogger<PostService> logger)
+            IPostMapper postMapper, IPostCommentMapper postCommentMapper, ILogger<PostService> logger)
         {
             _postRepository = postRepository;
             _postMapper = postMapper;
+            _postCommentMapper = postCommentMapper;
             _logger = logger;
         }
 
@@ -148,6 +149,19 @@ namespace Hallucinogen_API.Services.Implementations
             };
 
             return response;                
+        }
+
+        public async Task<GetCommentsResponse> GetPostCommentsAsync(int postId)
+        {
+            var commentEntities = await _postRepository.GetPostCommentsAsync(postId);
+            
+            var response = new GetCommentsResponse
+            {
+                StatusCode = (int) HttpStatusCode.OK,
+                Comments = commentEntities.Select(c => _postCommentMapper.ToModel(c)).ToList()
+            };
+
+            return response;     
         }
     }
 }

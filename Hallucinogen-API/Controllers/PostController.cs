@@ -54,6 +54,17 @@ namespace Hallucinogen_API.Controllers
             return GenerateResponse(response);
         }
         
+        [HttpGet("comments/{postId}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetPostComments(int postId)
+        {
+            
+            var response = await _postService.GetPostCommentsAsync(postId);
+
+            return GenerateResponse(response);
+        }
+
+        
 
         [HttpGet]
         [AllowAnonymous]

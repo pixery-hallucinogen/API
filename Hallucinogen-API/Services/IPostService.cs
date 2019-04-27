@@ -13,5 +13,6 @@ namespace Hallucinogen_API.Services
         Task<CreatePostResponse> CreatePostAsync(CreatePostRequest request, string userId);
         Task<LikePostResponse> LikePostAsync(LikePostRequest request, string userId);
         Task<CommentPostResponse> CommentPostAsync(CommentPostRequest request, string userId);
+        Task<GetCommentsResponse> GetPostCommentsAsync(int postId);
     }
 }

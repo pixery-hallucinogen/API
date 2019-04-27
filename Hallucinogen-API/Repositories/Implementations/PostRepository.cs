@@ -85,5 +85,13 @@ namespace Hallucinogen_API.Repositories.Implementations
 
             return await SaveAsync();        
         }
+
+        public async Task<List<PostCommentEntity>> GetPostCommentsAsync(int postId)
+        {
+            return await _dbContext.PostComments
+                .Where(pc => pc.PostId == postId)
+                .OrderByDescending(pc => pc.CommentDate)
+                .ToListAsync();
+        }
     }
 }

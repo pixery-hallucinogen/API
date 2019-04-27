@@ -12,5 +12,6 @@ namespace Hallucinogen_API.Repositories
         Task<PostEntity> GetPostFromIdAsync(int postId);
         Task<bool> LikePostAsync(PostLikeEntity entity);
         Task<bool> CommentPostAsync(PostCommentEntity entity);
+        Task<List<PostCommentEntity>> GetPostCommentsAsync(int postId);
     }
 }
