@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Hallucinogen_API.Contract;
 
 namespace Hallucinogen_API.Data.Entities
@@ -13,5 +14,8 @@ namespace Hallucinogen_API.Data.Entities
 
         public string UserId { get; set; }
         public virtual UserEntity User { get; set; }
+        
+        public ICollection<PostLikeEntity> Likes { get; set; }
+        
     }
 }
