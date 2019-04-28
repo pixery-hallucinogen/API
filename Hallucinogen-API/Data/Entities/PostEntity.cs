@@ -8,7 +8,8 @@ namespace Hallucinogen_API.Data.Entities
     {
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public string Media { get; set; }        public DateTime PostDate { get; set; }
+        public string Media { get; set; }        
+        public DateTime PostDate { get; set; }
 
         public string Description { get; set; }
         public string Location { get; set; }

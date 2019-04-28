@@ -42,6 +42,7 @@ namespace Hallucinogen_API.Repositories.Implementations
 
         public async Task<bool> CreatePostAsync(PostEntity entity)
         {
+            entity.PostDate = DateTime.UtcNow;
             await _dbContext.Posts.AddAsync(entity);
 
             return await SaveAsync();
